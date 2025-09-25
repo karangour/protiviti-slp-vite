@@ -225,7 +225,7 @@ function App() {
             </section>
 
             {/* Right column: Program journey timeline */}
-            <section className="w-[90%]">
+            <section className="w-[90%] mx-auto">
               <h2 className="text-center text-xl sm:text-2xl font-bold mb-4">
                 Program journey
               </h2>
