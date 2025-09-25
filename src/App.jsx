@@ -60,7 +60,8 @@ const timeline = [
   },
   {
     id: 8,
-    month: "JANUARY (NEXT YEAR)",
+    month: "JANUARY",
+    dataKey: "JANUARY (NEXT YEAR)",
     colorClass: "bg-orange-500",
     borderClass: "border-orange-500",
     textColorClass: "text-orange-500",
@@ -68,7 +69,8 @@ const timeline = [
   },
   {
     id: 9,
-    month: "FEBRUARY (NEXT YEAR)",
+    month: "FEBRUARY",
+    dataKey: "FEBRUARY (NEXT YEAR)",
     colorClass: "bg-gray-500",
     borderClass: "border-gray-500",
     textColorClass: "text-gray-700",
@@ -76,7 +78,8 @@ const timeline = [
   },
   {
     id: 10,
-    month: "MARCH (NEXT YEAR)",
+    month: "MARCH",
+    dataKey: "MARCH (NEXT YEAR)",
     colorClass: "bg-cyan-500",
     borderClass: "border-cyan-500",
     textColorClass: "text-cyan-700",
@@ -84,7 +87,8 @@ const timeline = [
   },
   {
     id: 11,
-    month: "MARCH END (NEXT YEAR)",
+    month: "MARCH END",
+    dataKey: "MARCH END (NEXT YEAR)",
     colorClass: "bg-orange-500",
     borderClass: "border-orange-500",
     textColorClass: "text-orange-500",
@@ -98,19 +102,22 @@ function App() {
   const [modalContent, setModalContent] = useState("");
   const [modalTitle, setModalTitle] = useState("");
   const [modalBgClass, setModalBgClass] = useState("");
-  const [modalMonth, setModalMonth] = useState("");
+  const [modalMonth, setModalMonth] = useState(""); // key used for saving
+  const [modalMonthLabel, setModalMonthLabel] = useState(""); // display label in header
 
   // Click handler extracted from inline button
   const handleTimelineClick = (item) => {
-    setClickedId(item.id);
-    setTimeout(() => setClickedId(null), 300);
-
-    const content = programJourneyData[item.month];
+    // Use a different key for next-year items if provided
+    const key = item.dataKey || item.month;
+    const content = programJourneyData[key];
     if (content) {
-      setModalMonth(item.month);
+      setModalMonth(key); // actual data key used for saving/mapping
       setModalTitle(item.title);
       setModalContent(content);
       setModalBgClass(item.colorClass);
+      // Display label: append (NEXT YEAR) only if dataKey indicates it
+      const isNextYear = (item.dataKey || "").includes("(NEXT YEAR)");
+      setModalMonthLabel(isNextYear ? `${item.month} (NEXT YEAR)` : item.month);
       setModalOpen(true);
     }
   };
@@ -230,32 +237,54 @@ function App() {
                   {timeline.map((item, idx) => (
                     <div key={item.id} className="relative">
                       {/* Timeline node - colored circle in center */}
-                      <div className="absolute top-3 left-1/2 -translate-x-1/2 transform flex items-center justify-center z-10">
+                      <div className="absolute top-3 left-1/2 -translate-x-1/2 transform flex items-center justify-center z-30">
                         <div
-                          className={`w-8 h-8 rounded-full bg-white ${item.borderClass} border-4 shadow-md`}
+                          className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white ${item.borderClass} border-4 shadow-md`}
                         ></div>
                       </div>
                       {/* Connector from this circle to the next, matching this circle's color */}
                       {idx < timeline.length && (
                         <div
-                          className={`absolute top-4 left-1/2 h-[90px] -translate-x-1/2 w-1 ${item.colorClass}`}
+                          className={`absolute top-4 left-1/2 h-[80px] sm:h-[90px] -translate-x-1/2 w-1 z-20 ${item.colorClass}`}
                           aria-hidden="true"
                         ></div>
                       )}
 
                       {/* Content - alternating sides */}
-                      <div className="flex h-[90px] w-full">
+                      <div className="flex h-[80px] sm:h-[90px] w-full">
                         {/* Content box - place right for odd, left for even */}
                         <div
                           className={`w-[50%] ${
                             item.id % 2 === 1
                               ? "ml-auto text-left"
                               : "mr-auto text-left"
+                          } cursor-pointer transition-transform duration-200 ease-out relative z-0 ${
+                            clickedId === item.id
+                              ? "scale-[0.98] shadow-md ring-1 ring-slate-300 ring-offset-1"
+                              : ""
                           }`}
+                          role="button"
+                          tabIndex={0}
+                          onMouseDown={() => setClickedId(item.id)}
+                          onMouseUp={() => {
+                            handleTimelineClick(item);
+                            setTimeout(() => setClickedId(null), 150);
+                          }}
+                          onMouseLeave={() => setClickedId(null)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") {
+                              e.preventDefault();
+                              handleTimelineClick(item);
+                            }
+                          }}
                         >
                           {/* Month */}
                           <div
-                            className={`text-[16px] font-bold ${item.textColorClass} mb-1 ml-8`}
+                            className={`text-[13px] sm:text-[16px] font-bold ${
+                              item.textColorClass
+                            } mb-1 ${
+                              item.id % 2 === 1 ? "ml-5" : "ml-3"
+                            } sm:ml-8`}
                           >
                             {item.month}
                           </div>
@@ -272,8 +301,8 @@ function App() {
                               <div
                                 className={`absolute top-1/2 -translate-y-1/2 ${
                                   item.id % 2 === 1
-                                    ? "right-[-1.5rem]"
-                                    : "left-[-1.5rem]"
+                                    ? "right-[-1.8rem] sm:right-[-1.5rem]"
+                                    : "left-[-1.8rem] sm:left-[-1.5rem]"
                                 }`}
                               >
                                 {/* Ping ripple when clicked */}
@@ -287,28 +316,30 @@ function App() {
                                   }`}
                                   aria-hidden="true"
                                 ></span>
-                                <button
-                                  type="button"
-                                  onClick={() => handleTimelineClick(item)}
-                                  className={`relative flex items-center justify-center w-12 h-12 rounded-full bg-white shadow-md border border-slate-300 ${item.borderClass.replace(
+                                <div
+                                  className={`relative flex items-center justify-center w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-white shadow-md border border-slate-300 ${item.borderClass.replace(
                                     "border-",
                                     "ring-"
-                                  )} focus-visible:outline-none focus-visible:ring-2 transition-transform duration-200 ease-out hover:shadow-lg hover:bg-slate-50 hover:scale-105 active:scale-95`}
-                                  aria-label={`Open details for ${item.month}`}
+                                  )} transition-transform duration-200 ease-out hover:shadow-lg hover:bg-slate-50 hover:scale-105 active:scale-95`}
+                                  aria-hidden="true"
                                 >
                                   <span
-                                    className={`text-base font-semibold ${item.textColorClass}`}
+                                    className={`text-[12px] sm:text-base font-semibold ${item.textColorClass}`}
                                   >
                                     {item.id}
                                   </span>
-                                </button>
+                                </div>
                               </div>
                             </div>
                           </div>
 
                           {/* Title */}
-                          <div className="flex items-center ml-8 w-[200px]">
-                            <div className="font-medium text-[14px]">
+                          <div
+                            className={`flex items-center ${
+                              item.id % 2 === 1 ? "ml-5" : "ml-3"
+                            }  sm:ml-8 w-[110px] sm:w-[200px]`}
+                          >
+                            <div className="font-medium sm:font-normal text-[11px] sm:text-[14px]">
                               {item.title}
                             </div>
                           </div>
@@ -345,7 +376,7 @@ function App() {
               <h3
                 className={`text-xl font-bold leading-6 text-center text-white`}
               >
-                {modalMonth}
+                {modalMonthLabel || modalMonth}
               </h3>
             </div>
             <div className="px-6 py-5">
