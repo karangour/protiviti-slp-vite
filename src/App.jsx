@@ -146,6 +146,11 @@ function App() {
       <div className="relative z-10">
         {/* Header */}
         <header className="py-10">
+          <img
+            src="/logo.png"
+            alt="Protiviti SLP"
+            className="mx-auto mb-6 h-10 sm:h-12 md:h-14 w-auto"
+          />
           <h1 className="text-center text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-wide drop-shadow">
             SENIOR LEADERSHIP PROGRAM
           </h1>
