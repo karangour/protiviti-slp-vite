@@ -301,7 +301,7 @@ function App() {
                               <div
                                 className={`absolute top-1/2 -translate-y-1/2 ${
                                   item.id % 2 === 1
-                                    ? "right-[-1.8rem] sm:right-[-1.5rem]"
+                                    ? "right-[-1.6rem] sm:right-[-1.2rem]"
                                     : "left-[-1.8rem] sm:left-[-1.5rem]"
                                 }`}
                               >
