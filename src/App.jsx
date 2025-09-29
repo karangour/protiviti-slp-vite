@@ -8,7 +8,7 @@ const timeline = [
     colorClass: "bg-cyan-500",
     borderClass: "border-cyan-500",
     textColorClass: "text-cyan-700",
-    title: "LAUNCH SNS 2 & VERSATILITY 2",
+    title: "LAUNCH SNS & VERSATILITY",
   },
   {
     id: 2,
