@@ -1,100 +1,10 @@
 import { useState } from "react";
 import programJourneyData from "./program_journey.json";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 
-const timeline = [
-  {
-    id: 1,
-    month: "JANUARY",
-    colorClass: "bg-cyan-500",
-    borderClass: "border-cyan-500",
-    textColorClass: "text-cyan-700",
-    title: "LAUNCH SNS & VERSATILITY",
-  },
-  {
-    id: 2,
-    month: "FEBRUARY",
-    colorClass: "bg-orange-500",
-    borderClass: "border-orange-500",
-    textColorClass: "text-orange-500",
-    title: "ORIENTATION SESSION - INDIVIDUAL",
-  },
-  {
-    id: 3,
-    month: "FEBRUARY END",
-    colorClass: "bg-gray-500",
-    borderClass: "border-gray-500",
-    textColorClass: "text-gray-700",
-    title: "EXECUTIVE COACHING",
-  },
-  {
-    id: 4,
-    month: "APRIL",
-    colorClass: "bg-cyan-500",
-    borderClass: "border-cyan-500",
-    textColorClass: "text-cyan-700",
-    title: "TRAINING 1 - MAKE YOUR PRESENCE FELT",
-  },
-  {
-    id: 5,
-    month: "MAY",
-    colorClass: "bg-orange-500",
-    borderClass: "border-orange-500",
-    textColorClass: "text-orange-500",
-    title: "MENTORING SESSION",
-  },
-  {
-    id: 6,
-    month: "JULY",
-    colorClass: "bg-gray-500",
-    borderClass: "border-gray-500",
-    textColorClass: "text-gray-700",
-    title: "TRAINING 2 - CONSULTATIVE SELLING SKILLS/ACCOUNT MANAGEMENT SKILLS",
-  },
-  {
-    id: 7,
-    month: "OCTOBER",
-    colorClass: "bg-cyan-500",
-    borderClass: "border-cyan-500",
-    textColorClass: "text-cyan-700",
-    title: "TRAINING 3 - PRACTICAL & AUTHENTIC LEADERSHIP",
-  },
-  {
-    id: 8,
-    month: "JANUARY",
-    dataKey: "JANUARY (NEXT YEAR)",
-    colorClass: "bg-orange-500",
-    borderClass: "border-orange-500",
-    textColorClass: "text-orange-500",
-    title: "TRAINING 4 - HIGH IMPACT PRESENTATION",
-  },
-  {
-    id: 9,
-    month: "FEBRUARY",
-    dataKey: "FEBRUARY (NEXT YEAR)",
-    colorClass: "bg-gray-500",
-    borderClass: "border-gray-500",
-    textColorClass: "text-gray-700",
-    title: "CLOSURE REPORT - EXECUTIVE COACHING & MENTORING",
-  },
-  {
-    id: 10,
-    month: "MARCH",
-    dataKey: "MARCH (NEXT YEAR)",
-    colorClass: "bg-cyan-500",
-    borderClass: "border-cyan-500",
-    textColorClass: "text-cyan-700",
-    title: "CLOSURE - SNS 2 & VERSATILITY 2",
-  },
-  {
-    id: 11,
-    month: "MARCH END",
-    dataKey: "MARCH END (NEXT YEAR)",
-    colorClass: "bg-orange-500",
-    borderClass: "border-orange-500",
-    textColorClass: "text-orange-500",
-    title: "INDIVIDUAL DEVELOPMENT REPORT CREATION",
-  },
-];
+const { __timeline: timeline } = programJourneyData;
 
 function App() {
   const [clickedId, setClickedId] = useState(null);
@@ -105,16 +15,28 @@ function App() {
   const [modalMonth, setModalMonth] = useState(""); // key used for saving
   const [modalMonthLabel, setModalMonthLabel] = useState(""); // display label in header
 
+  // Fixed 3-color palette applied by index to avoid consecutive duplicates
+  const palette = [
+    { bg: "bg-cyan-500", border: "border-cyan-500", text: "text-cyan-500" },
+    {
+      bg: "bg-orange-500",
+      border: "border-orange-500",
+      text: "text-orange-500",
+    },
+    { bg: "bg-gray-500", border: "border-gray-500", text: "text-gray-500" },
+  ];
+
   // Click handler extracted from inline button
-  const handleTimelineClick = (item) => {
+  const handleTimelineClick = (item, idx) => {
     // Use a different key for next-year items if provided
     const key = item.dataKey || item.month;
-    const content = programJourneyData[key];
+    const content = item.description || programJourneyData[key];
     if (content) {
       setModalMonth(key); // actual data key used for saving/mapping
       setModalTitle(item.title);
       setModalContent(content);
-      setModalBgClass(item.colorClass);
+      const p = palette[idx % palette.length];
+      setModalBgClass(p.bg);
       // Display label: append (NEXT YEAR) only if dataKey indicates it
       const isNextYear = (item.dataKey || "").includes("(NEXT YEAR)");
       setModalMonthLabel(isNextYear ? `${item.month} (NEXT YEAR)` : item.month);
@@ -239,119 +161,122 @@ function App() {
 
                 {/* Timeline items */}
                 <div className="relative z-10">
-                  {timeline.map((item, idx) => (
-                    <div key={item.id} className="relative">
-                      {/* Timeline node - colored circle in center */}
-                      <div className="absolute top-3 left-1/2 -translate-x-1/2 transform flex items-center justify-center z-30">
-                        <div
-                          className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white ${item.borderClass} border-4 shadow-md`}
-                        ></div>
-                      </div>
-                      {/* Connector from this circle to the next, matching this circle's color */}
-                      {idx < timeline.length && (
-                        <div
-                          className={`absolute top-4 left-1/2 h-[80px] sm:h-[90px] -translate-x-1/2 w-1 z-20 ${item.colorClass}`}
-                          aria-hidden="true"
-                        ></div>
-                      )}
-
-                      {/* Content - alternating sides */}
-                      <div className="flex h-[80px] sm:h-[90px] w-full">
-                        {/* Content box - place right for odd, left for even */}
-                        <div
-                          className={`w-[50%] ${
-                            item.id % 2 === 1
-                              ? "ml-auto text-left"
-                              : "mr-auto text-left"
-                          } cursor-pointer transition-transform duration-200 ease-out relative z-0 ${
-                            clickedId === item.id
-                              ? "scale-[0.98] shadow-md ring-1 ring-slate-300 ring-offset-1"
-                              : ""
-                          }`}
-                          role="button"
-                          tabIndex={0}
-                          onMouseDown={() => setClickedId(item.id)}
-                          onMouseUp={() => {
-                            handleTimelineClick(item);
-                            setTimeout(() => setClickedId(null), 150);
-                          }}
-                          onMouseLeave={() => setClickedId(null)}
-                          onKeyDown={(e) => {
-                            if (e.key === "Enter" || e.key === " ") {
-                              e.preventDefault();
-                              handleTimelineClick(item);
-                            }
-                          }}
-                        >
-                          {/* Month */}
+                  {timeline.map((item, idx) => {
+                    const p = palette[idx % palette.length];
+                    return (
+                      <div key={item.id} className="relative">
+                        {/* Timeline node - colored circle in center */}
+                        <div className="absolute top-3 left-1/2 -translate-x-1/2 transform flex items-center justify-center z-30">
                           <div
-                            className={`text-[13px] sm:text-[16px] font-bold ${
-                              item.textColorClass
-                            } mb-1 ${
-                              item.id % 2 === 1 ? "ml-5" : "ml-3"
-                            } sm:ml-8`}
-                          >
-                            {item.month}
-                          </div>
-
-                          {/* Dotted line split: short segment towards center, long segment outward with numbered button at end */}
+                            className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white ${p.border} border-4 shadow-md`}
+                          ></div>
+                        </div>
+                        {/* Connector from this circle to the next, matching this circle's color */}
+                        {idx < timeline.length && (
                           <div
-                            className={`relative mb-2 flex items-center ${
-                              item.id % 2 === 1 ? "" : "flex-row-reverse"
+                            className={`absolute top-4 left-1/2 h-[80px] sm:h-[90px] -translate-x-1/2 w-1 z-20 ${p.bg}`}
+                            aria-hidden="true"
+                          ></div>
+                        )}
+
+                        {/* Content - alternating sides */}
+                        <div className="flex h-[80px] sm:h-[90px] w-full">
+                          {/* Content box - place right for odd, left for even */}
+                          <div
+                            className={`w-[50%] ${
+                              item.id % 2 === 1
+                                ? "ml-auto text-left"
+                                : "mr-auto text-left"
+                            } cursor-pointer transition-transform duration-200 ease-out relative z-0 ${
+                              clickedId === item.id
+                                ? "scale-[0.98] shadow-md ring-1 ring-slate-300 ring-offset-1"
+                                : ""
                             }`}
+                            role="button"
+                            tabIndex={0}
+                            onMouseDown={() => setClickedId(item.id)}
+                            onMouseUp={() => {
+                              handleTimelineClick(item, idx);
+                              setTimeout(() => setClickedId(null), 150);
+                            }}
+                            onMouseLeave={() => setClickedId(null)}
+                            onKeyDown={(e) => {
+                              if (e.key === "Enter" || e.key === " ") {
+                                e.preventDefault();
+                                handleTimelineClick(item, idx);
+                              }
+                            }}
                           >
-                            {/* Long outer segment */}
-                            <div className="relative flex-1 border-t-2 border-dotted border-black">
-                              {/* Clickable number button with ping animation */}
-                              <div
-                                className={`absolute top-1/2 -translate-y-1/2 ${
-                                  item.id % 2 === 1
-                                    ? "right-[-1.6rem] sm:right-[-1.2rem]"
-                                    : "left-[-1.8rem] sm:left-[-1.5rem]"
-                                }`}
-                              >
-                                {/* Ping ripple when clicked */}
-                                <span
-                                  className={`absolute inset-0 rounded-full ${
-                                    item.colorClass
-                                  } opacity-30 ${
-                                    clickedId === item.id
-                                      ? "animate-ping"
-                                      : "hidden"
-                                  }`}
-                                  aria-hidden="true"
-                                ></span>
+                            {/* Month */}
+                            <div
+                              className={`text-[13px] sm:text-[16px] font-bold ${
+                                p.text
+                              } mb-1 ${
+                                item.id % 2 === 1 ? "ml-5" : "ml-3"
+                              } sm:ml-8`}
+                            >
+                              {item.month}
+                            </div>
+
+                            {/* Dotted line split: short segment towards center, long segment outward with numbered button at end */}
+                            <div
+                              className={`relative mb-2 flex items-center ${
+                                item.id % 2 === 1 ? "" : "flex-row-reverse"
+                              }`}
+                            >
+                              {/* Long outer segment */}
+                              <div className="relative flex-1 border-t-2 border-dotted border-black">
+                                {/* Clickable number button with ping animation */}
                                 <div
-                                  className={`relative flex items-center justify-center w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-white shadow-md border border-slate-300 ${item.borderClass.replace(
-                                    "border-",
-                                    "ring-"
-                                  )} transition-transform duration-200 ease-out hover:shadow-lg hover:bg-slate-50 hover:scale-105 active:scale-95`}
-                                  aria-hidden="true"
+                                  className={`absolute top-1/2 -translate-y-1/2 ${
+                                    item.id % 2 === 1
+                                      ? "right-[-1.6rem] sm:right-[-1.2rem]"
+                                      : "left-[-1.8rem] sm:left-[-1.5rem]"
+                                  }`}
                                 >
+                                  {/* Ping ripple when clicked */}
                                   <span
-                                    className={`text-[12px] sm:text-base font-semibold ${item.textColorClass}`}
+                                    className={`absolute inset-0 rounded-full ${
+                                      p.bg
+                                    } opacity-30 ${
+                                      clickedId === item.id
+                                        ? "animate-ping"
+                                        : "hidden"
+                                    }`}
+                                    aria-hidden="true"
+                                  ></span>
+                                  <div
+                                    className={`relative flex items-center justify-center w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-white shadow-md border border-slate-300 ${p.border.replace(
+                                      "border-",
+                                      "ring-"
+                                    )} transition-transform duration-200 ease-out hover:shadow-lg hover:bg-slate-50 hover:scale-105 active:scale-95`}
+                                    aria-hidden="true"
                                   >
-                                    {item.id}
-                                  </span>
+                                    <span
+                                      className={`text-[12px] sm:text-base font-semibold ${p.text}`}
+                                    >
+                                      {item.id}
+                                    </span>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
 
-                          {/* Title */}
-                          <div
-                            className={`flex items-center ${
-                              item.id % 2 === 1 ? "ml-5" : "ml-3"
-                            }  sm:ml-8 w-[110px] sm:w-[200px]`}
-                          >
-                            <div className="font-medium sm:font-normal text-[11px] sm:text-[14px]">
-                              {item.title}
+                            {/* Title */}
+                            <div
+                              className={`flex items-center ${
+                                item.id % 2 === 1 ? "ml-5" : "ml-3"
+                              }  sm:ml-8 w-[110px] sm:w-[200px]`}
+                            >
+                              <div className="font-medium sm:font-normal text-[11px] sm:text-[14px]">
+                                {item.title}
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             </section>
@@ -388,9 +313,35 @@ function App() {
               <div className="text-base font-bold text-center text-gray-900 mb-3">
                 {modalTitle}
               </div>
-              <p className="mt-2 text-sm text-gray-600 leading-relaxed">
-                {modalContent}
-              </p>
+              <div className="mt-2 text-sm text-gray-800 leading-relaxed prose prose-sm max-w-none">
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  rehypePlugins={[rehypeRaw]}
+                  components={{
+                    ol: (props) => {
+                      const isAlpha = props.type === "a";
+                      const className = `pl-6 mb-2 list-outside ${
+                        isAlpha ? "" : "list-decimal"
+                      }`;
+                      const style = isAlpha
+                        ? { listStyleType: "lower-alpha" }
+                        : undefined;
+                      return (
+                        <ol className={className} style={style} {...props} />
+                      );
+                    },
+                    ul: (props) => (
+                      <ul className="list-disc pl-6 mb-2" {...props} />
+                    ),
+                    li: (props) => <li className="mb-1 pl-1" {...props} />,
+                    br: () => (
+                      <span className="block h-1" aria-hidden="true"></span>
+                    ),
+                  }}
+                >
+                  {modalContent.replace(/\n/g, "<br />\n")}
+                </ReactMarkdown>
+              </div>
             </div>
             <div className="px-6 py-3 bg-gray-50 flex justify-end gap-3">
               <button

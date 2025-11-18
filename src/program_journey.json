@@ -1,13 +1,82 @@
 {
-  "JANUARY": "𝗦𝘂𝗽𝗽𝗼𝗿𝘁 𝗡𝗲𝘁𝘄𝗼𝗿𝗸 𝗦𝘂𝗿𝘃𝗲𝘆 takes a supportive ecosystem to develop a leader. A support network member is someone who contributes to grooming a leader. The participant will choose her/his support network members. The support network consists of one’s direct reports, reporting manager, peers and seniors. For SLP we are asking for a minimum of 3 peers* and 3 seniors** to be nominated by the participant at the beginning of the leadership journey. Role of Support Network - Provide inputs to the participant against the Protiviti leadership competency framework via a survey at the beginning and at the end of the leadership journey. Note - Choose support network members who have a point of view on the participant’s work/engagement and leadership style. She/he should have a working relationship with the participant. *Peer is defined as someone who is at the same designation/level as the participant from the same solution or a different solution, including enablement functions. **Senior is defined as someone at a senior level/designation of the participant from the same solution or a different solution, including the enablement function. TRACOM Social Style Questionnaire - Support network members to complete a TRACOM questionnaire. The survey will highlight the social style of the participants. This will enable the participant to understand her/his working style, communication strategy, and motivations. The survey helps participants build better working relationships with stakeholders and improve their ability to influence.",
-  "FEBRUARY": "The Orientation session is divided into five parts a. SLP program introduction. b. Senior leadership presence & keynote. c. TRACOM social style session. d. Creating integrated actional plan including SNS survey inputs and TRACOM social style result. e. Share executive coach alignment. Total time investment from coaches would be 6 hours in person. The set-up for the orientation session will be classroom set-up.",
-  "FEBRUARY END": "Executive coaching begins with focused sessions on leadership principles. Participants work with experienced coaches to identify growth opportunities. These sessions establish the foundation for ongoing development throughout the program. Personal leadership challenges are addressed with actionable strategies. Participants begin developing their leadership vision statements.",
-  "APRIL": "Training 1 focuses on presence and impact in leadership settings. Participants learn techniques for effective communication and stakeholder management. Practical exercises help develop confidence in high-pressure situations. Video feedback sessions provide insights on personal presentation style. Participants practice scenario-based leadership challenges with peer feedback.",
-  "MAY": "Mentoring sessions pair participants with senior leaders for guidance. These relationships foster knowledge transfer and organizational wisdom. Participants receive feedback on their progress and development areas. Career trajectory discussions help align personal goals with organizational needs. Mentors share personal experiences and lessons from their leadership journey.",
-  "JULY": "Training 2 develops consultative selling and account management capabilities. Participants learn frameworks for identifying client needs and delivering value. Role-playing exercises simulate challenging client scenarios and negotiations. Strategic account planning methodologies are introduced and practiced. Participants develop action plans for their key accounts and relationships.",
-  "OCTOBER": "Training 3 explores practical and authentic leadership approaches. Participants develop their unique leadership voice and presence. Team dynamics and conflict resolution strategies are practiced in group settings. Ethical decision-making frameworks are applied to complex scenarios. Participants receive feedback on their leadership style evolution.",
-  "JANUARY (NEXT YEAR)": "Training 4 focuses on high-impact presentation skills for executives. Advanced techniques for influencing diverse stakeholders are practiced. Participants prepare and deliver presentations with professional feedback. Visual storytelling and data presentation methods enhance communication effectiveness. Crisis communication strategies prepare leaders for challenging situations.",
-  "FEBRUARY (NEXT YEAR)": "Closure reports summarize progress in executive coaching and mentoring. Participants reflect on their growth journey and key learnings. Coaches provide final assessments and recommendations for continued development. Mentors offer insights on observed progress and future opportunities. Participants share their experiences with the cohort in structured sessions.",
-  "MARCH (NEXT YEAR)": "The program concludes with final assessments of SNS 2 & VERSATILITY 2. Participants demonstrate their growth through practical leadership challenges. Group discussions focus on applying learnings to organizational challenges. Peer feedback sessions highlight observed strengths and continued development areas. Participants commit to ongoing leadership practice and application.",
-  "MARCH END (NEXT YEAR)": "Individual development reports document each participant's journey. These comprehensive assessments highlight strengths and continued growth areas. Participants receive guidance for their ongoing leadership development. Future learning recommendations are tailored to each individual's needs. The program concludes with a celebration of achievements and commitments to continued growth."
+  "__timeline": [
+    {
+      "id": 1,
+      "month": "JANUARY",
+      "title": "SNS & TRACOM LAUNCH",
+      "description": "The **Support Network Member (SNS)** program develops leaders via a chosen ecosystem. SLP participants must nominate three peers and three seniors to provide feedback. The network uses a survey, mapped to the Protiviti competency framework, at the start and end of the journey. Members must have a direct working relationship for relevant input.\n\n**TRACOM Social Style Questionnaire**\nNetwork members complete the **TRACOM Social Style Questionnaire** to highlight the participant's social style. This helps participants understand their own working style, communication, and motivations to improve stakeholder relationships and enhance their influencing ability."
+    },
+    {
+      "id": 2,
+      "month": "JANUARY",
+      "title": "INDVIDUAL DEVELOPMENT PLANNING ",
+      "description": "This 2-hour in-person session focuses on SNS report walkthrough with the explanation of Support Network Survey results to the participants. Participants will learn to understand the key insights of their report, identify patterns that highlight individual strengths and development areas, and collaboratively create a practical action plan to support personal and professional growth."
+    },
+    {
+      "id": 3,
+      "month": "FEBRUARY",
+      "title": "ORIENTATION SESSION - INDIVIDUAL",
+      "description": "The Orientation session is divided into five parts:\n\n<ol type=\"a\" style=\"list-style-type: lower-alpha;\"><li>SLP program introduction.</li><li>Senior leadership presence & keynote.</li><li>TRACOM social style session.</li><li>Creating integrated Personal Development Plan by analyzing the SNS survey inputs and TRACOM social style report.</li><li>Share executive coach alignment.</li></ol>"
+    },
+    {
+      "id": 4,
+      "month": "FEBRUARY END",
+      "title": "EXECUTIVE COACHING",
+      "description": "An Executive Coach will be aligned with each participant. The objective of the Executive Coach is to help participants work on the mutually agreed Personal Development Plan (PDP). A total of 5 sessions per participant will be assigned. Each executive coaching session will be for 90 minutes. Below mentioned are the list of executive coaches:   \n\n* Daljit Singh  \n* Mohan Das Menon  \n* Anita Bilani  \n* Rajiv Raju  \n* Yaadhav Mehra  \n* Preeti Singh  \n* Dr. George Dimitrelis"
+    },
+    {
+      "id": 5,
+      "month": "APRIL",
+      "title": "TRAINING 1 - MAKE YOUR PRESENCE FELT",
+      "description": "**Faculty – Elena Asgar, Mode – Classroom, Time – 2 Days**   \n“Make Your Presence Felt - in Boardrooms and Beyond” is a premium program designed for accomplished professionals who already excel as experts in their domain but need to strengthen their Executive Presence. The program helps participants develop leadership impact, visibility, image, and influence required to match their technical and business acumen. By focusing on advanced skills in public speaking, high-level communication, and client influence, it enables them to project a partner-worthy persona, win clients, attract top talent, and align with the stature of the Firm."
+    },
+    {
+      "id": 6,
+      "month": "MAY",
+      "title": "MENTORING SESSION",
+      "description": "**Mentoring (Maximum 3 mentees to 1 mentor)**  \nThe Mentoring Program spans six sessions. The first two focus on the mentee drafting and prioritizing a 6-month agenda (max 4 issues) and action plan, with the mentor providing initial advice. Sessions 3 and 4 involve progress review, status updates, and checking in with the mentee's manager for workplace changes. Session 5 is a mandatory face-to-face check-in focused on improving the mentor relationship and addressing potential growth roadblocks. Session 6 provides final detailed feedback and formally concludes the relationship.  \n\n\n**Role of Mentor (2-Hour Session)**  \n**Role of Mentor Training:** Understanding mentoring as an leadership development tool, outlining expectations, support, required mindset, and mitigating common challenges.\n\nList of potential mentors. \n\n* Sunil Chandiramani  \n* Anjani Agrawal  \n* Ambarish Dasgupta  \n* Sanjeev Agarwal  \n* EXCO members from India and Middle East"
+    },
+    {
+      "id": 7,
+      "month": "JULY",
+      "title": "TRAINING 2 - CONSULTATIVE SELLING SKILLS/ACCOUNT MANAGEMENT SKILLS",
+      "description": "(Yet to Get)"
+    },
+    {
+      "id": 8,
+      "month": "OCTOBER",
+      "title": "TRAINING 3 - PRACTICAL & AUTHENTIC LEADERSHIP",
+      "description": "**Faculty – Yaadhav Mehra, Mode – Classroom, Time – 2 Days**   \nPAL is a transformative 2-day workshop that navigates the paradox of being both practical and authentic. It helps leaders influence others while maintaining integrity. Through simulations and feedback, participants learn to delegate, develop unmotivated team members, and manage challenging personalities. The program encourages deep reflection and real-world experimentation to empower leaders to drive teams toward a desired future state with clarity and compassion."
+    },
+    {
+      "id": 9,
+      "month": "JANUARY",
+      "title": "TRAINING 4 - HIGH IMPACT PRESENTATION",
+      "description": "**Faculty – Dale Carnegie, Mode – Classroom, Time – 2 Days**   \nThis program focuses on immersive, hands-on learning to transform participants into compelling, influential speakers. Through videotaped assessments and personalized coaching, participants practice key techniques like message structuring, effective storytelling, and using visual aids. The goal is to build confidence, credibility, and practical skills to engage challenging audiences and achieve measurable business results."
+    },
+    {
+      "id": 10,
+      "month": "FEBRUARY",
+      "title": "TRAINING 5 - RESIDENTIAL WORKSHOP AT ISB",
+      "description": "**Faculty – Prof. Ravi Jain, Prof. Vishal Karungulam, Prof. Raj Rajeshwar Upadhyay, Time – 3 Days**  \nThis intensive 3-day workshop covers: **Driving Profitable Growth** (aligning operational and financial strategies for value creation); **AI Strategies for Business Transformation** (leveraging Generative AI for growth, considering ethics); and **Transformational Leadership** (fostering a growth mindset, managing disruption, and leading with emotional intelligence)."
+    },
+    {
+      "id": 11,
+      "month": "MARCH",
+      "title": "CLOSURE REPORT - EXECUTIVE COACHING & MENTORING",
+      "description": "Executive Coach to provide a report highlighting the efforts made and the progress made by the participant."
+    },
+    {
+      "id": 12,
+      "month": "MARCH MID",
+      "title": "CLOSURE - SNS 2 & VERSATILITY 2",
+      "description": "The same **support network** members to respond to the same survey at the end of the journey. This will allow the program sponsors, the Reporting Manager and the participant to understand the progress made during the program.   \n**TRACOM** Versatility report to be conducted again at the end of the program. This second report will allow the participants and other stakeholders to understand the progress made during the program journey."
+    },
+    {
+      "id": 13,
+      "month": "MARCH END",
+      "title": "INDIVIDUAL DEVELOPMENT REPORT CREATION",
+      "description": "The POD team will share an Individual Development Report at the end of the journey. The report will have the following information-   \n1. SNS 1 vs SNS 2 comparison  \n2. Versatility 1 vs Versatility 2 comparison  \n3. Executive Coach report  \n4. Mentoring Report"
+    }
+  ]
 }
