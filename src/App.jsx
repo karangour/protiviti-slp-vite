@@ -1,10 +1,22 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import programJourneyData from "./program_journey.json";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 
 const { __timeline: timeline } = programJourneyData;
+
+const OrderedList = ({ type, ...props }) => {
+  const isAlpha = type === "a";
+  const className = `pl-6 mb-2 list-outside ${isAlpha ? "" : "list-decimal"}`;
+  const style = isAlpha ? { listStyleType: "lower-alpha" } : undefined;
+  return <ol className={className} style={style} {...props} />;
+};
+
+OrderedList.propTypes = {
+  type: PropTypes.string,
+};
 
 function App() {
   const [clickedId, setClickedId] = useState(null);
@@ -318,18 +330,7 @@ function App() {
                   remarkPlugins={[remarkGfm]}
                   rehypePlugins={[rehypeRaw]}
                   components={{
-                    ol: (props) => {
-                      const isAlpha = props.type === "a";
-                      const className = `pl-6 mb-2 list-outside ${
-                        isAlpha ? "" : "list-decimal"
-                      }`;
-                      const style = isAlpha
-                        ? { listStyleType: "lower-alpha" }
-                        : undefined;
-                      return (
-                        <ol className={className} style={style} {...props} />
-                      );
-                    },
+                    ol: OrderedList,
                     ul: (props) => (
                       <ul className="list-disc pl-6 mb-2" {...props} />
                     ),
