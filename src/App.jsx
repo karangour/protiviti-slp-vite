@@ -118,7 +118,7 @@ function App() {
               <div>
                 <h2 className="text-xl sm:text-2xl font-bold mb-3">Context</h2>
                 <p className="text-slate-700 mb-2 font-bold">
-                  To build the core competencies of the consulting firm:
+                  To build the core competencies of a consulting firm:
                 </p>
                 <ul className="list-disc pl-8 space-y-1 text-slate-800">
                   <li>Business and Market Acumen</li>
