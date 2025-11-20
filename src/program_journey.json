@@ -4,7 +4,7 @@
       "id": 1,
       "month": "JANUARY",
       "title": "SNS & TRACOM LAUNCH",
-      "description": "The **Support Network Member (SNS)** program develops leaders via a chosen ecosystem. SLP participants must nominate three peers and three seniors to provide feedback. The network uses a survey, mapped to the Protiviti competency framework, at the start and end of the journey. Members must have a direct working relationship for relevant input.\n\n**TRACOM Social Style Questionnaire**\nNetwork members complete the **TRACOM Social Style Questionnaire** to highlight the participant's social style. This helps participants understand their own working style, communication, and motivations to improve stakeholder relationships and enhance their influencing ability."
+      "description": "The **Support Network Survey (SNS)** develops leaders via a chosen ecosystem. SLP participants must nominate three peers and three seniors besides their DRs and reporting manager to provide feedback. The network uses a survey, mapped to the Protiviti competency framework, at the start and end of the learning journey. Support Network Members must have a direct working relationship for relevant input.\n\n**TRACOM Social Style Questionnaire**\nSupport Network members also complete the **TRACOM Social Style Questionnaire** to highlight the participant's social style. This helps participants understand their own working style, communication, and motivations to improve stakeholder relationships and enhance their influencing ability."
     },
     {
       "id": 2,
@@ -15,8 +15,8 @@
     {
       "id": 3,
       "month": "FEBRUARY",
-      "title": "ORIENTATION SESSION - INDIVIDUAL",
-      "description": "The Orientation session is divided into five parts:\n\n<ol type=\"a\" style=\"list-style-type: lower-alpha;\"><li>SLP program introduction.</li><li>Senior leadership presence & keynote.</li><li>TRACOM social style session.</li><li>Creating integrated Personal Development Plan by analyzing the SNS survey inputs and TRACOM social style report.</li><li>Share executive coach alignment.</li></ol>"
+      "title": "ORIENTATION SESSION",
+      "description": "The Orientation session is a one-day program that includes the following modules:\n\n<ol type=\"a\" style=\"list-style-type: lower-alpha;\"><li>SLP program introduction.</li><li>Senior leadership presence & keynote.</li><li>TRACOM social style session.</li><li>Creating integrated Personal Development Plan by analyzing the SNS survey inputs and TRACOM social style report.</li><li>Share executive coach alignment.</li></ol>"
     },
     {
       "id": 4,
