@@ -118,7 +118,7 @@ function App() {
               <div>
                 <h2 className="text-xl sm:text-2xl font-bold mb-3">Context</h2>
                 <p className="text-slate-700 mb-2 font-bold">
-                  To build the core competencies of a consulting firm:
+                  To enhance core competencies of a leader:
                 </p>
                 <ul className="list-disc pl-8 space-y-1 text-slate-800">
                   <li>Business and Market Acumen</li>
@@ -135,8 +135,8 @@ function App() {
                   Proposed Action
                 </h2>
                 <p className="text-slate-700 leading-relaxed mb-6">
-                  A 15 months learning journey which will be a mix of in-person
-                  and virtual programs for our leaders.
+                  A 15-month learning journey, which will be a mix of in-person 
+                  training programs, coaching and mentoring.
                 </p>
                 <div className="rounded-lg border border-black overflow-hidden">
                   <dl className="relative divide-y divide-black">
